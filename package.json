@@ -1,0 +1,24 @@
+{
+  "name": "auction-website",
+  "version": "1.0.0",
+  "description": "An Auction website to sell your products",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/megablazikenabhishek/Auction-Website.git"
+  },
+  "author": "Abhishek Upadhyay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/megablazikenabhishek/Auction-Website/issues"
+  },
+  "homepage": "https://github.com/megablazikenabhishek/Auction-Website#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.9.1",
+    "socket.io": "^4.6.0"
+  }
+}
