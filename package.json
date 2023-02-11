@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/megablazikenabhishek/Auction-Website#readme",
   "dependencies": {
+    "@socket.io/admin-ui": "^0.5.1",
     "express": "^4.18.2",
     "mongoose": "^6.9.1",
     "passport": "^0.6.0",

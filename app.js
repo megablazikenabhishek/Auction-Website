@@ -1,20 +1,23 @@
 const express = require("express");
 const app = express();
+const server = require("http").createServer(app)
 
 /*
-    @middlewares: Basic required for all apps
+@middlewares: Basic middlewares
 */
 app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({extended:true}));
 
+//intializing socket
+module.exports = server;
+require("./config/socket");
+
 /*
-    @Routes: all the routes are setup all here
- */
-app.get("/api/v1/home", (req, res)=>{
-    console.log("Hello World");
-    res.status(200).send("hiiiiii");
-})
+@Routes: all the routes are setup all here
+*/
+app.use("/home",require("./Routes/testing"));
+
 
 const port = 4200||process.env.PORT;
-app.listen(port, ()=>console.log(`Server is listening at port ${port}........`));
+server.listen(port, ()=>console.log(`Server is listening at port ${port}........`));
