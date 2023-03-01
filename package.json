@@ -18,9 +18,14 @@
   "homepage": "https://github.com/megablazikenabhishek/Auction-Website#readme",
   "dependencies": {
     "@socket.io/admin-ui": "^0.5.1",
+    "cloudinary": "^1.34.0",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
     "express": "^4.18.2",
-    "mongoose": "^6.9.1",
+    "express-fileupload": "^1.4.0",
+    "mongoose": "^6.10.0",
     "passport": "^0.6.0",
+    "rimraf": "^4.1.2",
     "socket.io": "^4.6.0"
   }
 }

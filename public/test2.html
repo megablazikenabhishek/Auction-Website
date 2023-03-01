@@ -8,13 +8,17 @@
   </head>
   <body>
     <h1>Test 2</h1>
+    <form action="/home/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="images" multiple required />
+      <button type="submit">submit</button>
+    </form>
   </body>
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
+  <!-- <script src="/socket.io/socket.io.js"></script> -->
+  <!-- <script>
     const socket = io();
     socket.on("mess", (mess) => {
       console.log(mess);
     });
     socket.emit("join-room", "room2");
-  </script>
+  </script> -->
 </html>
