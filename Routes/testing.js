@@ -19,9 +19,9 @@ router.get("/ejs", (req, res)=>{
 
 router.post("/upload", uploader({useTempFiles:true}),  async(req, res)=>{
     console.log(req.files.images);
-    // await cloudinary.uploader.upload(req.files.images.tempFilePath, (err, result)=>{
-    //     console.log(result);
-    // })
+    await cloudinary.uploader.upload(req.files.images.tempFilePath, (err, result)=>{
+        console.log(result);
+    }).catch(err=>console.log(err))
     
     res.send("done");
     require("rimraf")("tmp");
