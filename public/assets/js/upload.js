@@ -15,7 +15,10 @@ document.querySelector(".form").addEventListener("submit", (e)=>{
       files.forEach(i=>{
         formData.append("photos", i)
       })
-
+      const all = document.querySelectorAll("input");
+      for(let i=0; i<all.length-1; i++){
+        formData.append(all[i].id, all[i].value);
+      }
       console.log(formData);
       axios.post("/home/uploadItem", formData, {
         onUploadProgress: progressEvent => {
