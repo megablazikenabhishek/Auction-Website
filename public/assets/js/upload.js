@@ -1,8 +1,6 @@
 document.querySelector(".form").addEventListener("submit", (e)=>{
     e.preventDefault();
     let fileElement = document.getElementById('files')
-
-      // check if user had selected a file
       if (fileElement.files.length === 0) {
         alert('please choose a file')
         return;
