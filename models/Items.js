@@ -5,7 +5,7 @@ const ItemSchema = new Schema({
     user_id: String,
     product_name: String,
     date: { type: Date, default:new Date() },
-    timestamp: Date,
+    time_stamp: Date,
     photos: {
         type: Array,
         default: []
