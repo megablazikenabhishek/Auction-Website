@@ -22,6 +22,7 @@ router.post("/upload", uploader({useTempFiles:true}),  async(req, res)=>{
     // await cloudinary.uploader.upload(req.files.images.tempFilePath, (err, result)=>{
     //     console.log(result);
     // })
+    
     res.send("done");
     require("rimraf")("tmp");
 })
