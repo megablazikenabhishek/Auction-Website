@@ -7,7 +7,7 @@ require("dotenv").config();
 /*
 @middlewares: Basic middlewares
 */
-app.use(express.static(path.join(__dirname, "./public")));
+app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
@@ -23,6 +23,7 @@ require("./config/socket");
 @Routes: all the routes are setup all here
 */
 app.use("/test",require("./Routes/testing"));
+app.use("/home",require("./Routes/home"));
 
 
 const port = 4200||process.env.PORT;
