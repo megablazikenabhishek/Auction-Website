@@ -22,7 +22,7 @@ require("./config/socket");
 /*
 @Routes: all the routes are setup all here
 */
-app.use("/home",require("./Routes/testing"));
+app.use("/test",require("./Routes/testing"));
 
 
 const port = 4200||process.env.PORT;
