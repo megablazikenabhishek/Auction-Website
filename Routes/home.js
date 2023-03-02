@@ -5,8 +5,8 @@ const cloudinary = require("../config/cloudinary");
 const Item = require("../models/Items");
 
 const getTimeStamp = (s)=>{
-    const date = new Date();
-    date.setDate(date.getDate()+Number(s));
+    var date = new Date();
+    date.setDate(date.getDate() + Number(s));
     return date;
 }
 
@@ -24,28 +24,49 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
         photos: []
     };
 
-    if(req.files.photos.tempFilePath){
-        await cloudinary.uploader.upload(req.files.photos.tempFilePath, (err, result)=>{
-            product.photos.push(result.url);
-        }).catch(err=>console.log(err))
-    }
-    else{
-        // console.log(req.files.photos)
-        for(let j=0; j<req.files.photos.length; j++){
-            let i = req.files.photos[j];
-            await cloudinary.uploader.upload(i.tempFilePath, (err, result)=>{
+    try{
+        if(req.files.photos.tempFilePath){
+            await cloudinary.uploader.upload(req.files.photos.tempFilePath, (err, result)=>{
                 product.photos.push(result.url);
             }).catch(err=>console.log(err))
         }
+        else{
+            for(let j=0; j<req.files.photos.length; j++){
+                let i = req.files.photos[j];
+                await cloudinary.uploader.upload(i.tempFilePath, (err, result)=>{
+                    product.photos.push(result.url);
+                }).catch(err=>console.log(err))
+            }
+        }
+        Item.create(product)
+            .then(res=>console.log(res))
+            .catch(err=>console.log(err))
+        require("rimraf")("tmp");
+        res.send({msg:"done"});
+    }catch(err){
+        res.status(500).send({msg:"error"})
+        console.log(err);
     }
-    console.log(getTimeStamp(req.body.time_stamp));
-    Item.create(product)
-    require("rimraf")("tmp");
-    res.send({msg:"done"});
+    
+    // console.log(getTimeStamp(req.body.time_stamp));
 })
 
-router.post("/testing",uploader({useTempFiles:true}), (req, res)=>{
-    console.log(req.files);
-    res.redirect("/test1.html");
+router.get("/getItems", async(req, res)=>{
+    try{
+        const result = await Item.find({sold:false});
+        await result.forEach(i=>{
+            const date = new Date();
+            if(i.time_stamp<=date){
+                console.log("yess");
+                Item.findOneAndUpdate(i._id, {sold:true})
+                    .catch(err=>console.log(err))
+            }
+        })
+        console.log(result);
+        res.status(200).json(result);
+    }catch(err){
+        console.log(err);
+    }
 })
+
 module.exports = router;
