@@ -3,6 +3,7 @@ const router = express.Router();
 const uploader = require("express-fileupload");
 const cloudinary = require("../config/cloudinary");
 const Item = require("../models/Items");
+const path = require("path");
 
 const getTimeStamp = (s)=>{
     var date = new Date();
@@ -48,6 +49,10 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
         res.status(500).send({msg:"error"})
         console.log(err);
     }
+})
+
+router.get("/", (req, res)=>{
+    res.sendFile(path.join(__dirname, "../public/home.html"));
 })
 
 router.get("/getItems", async(req, res)=>{
