@@ -15,6 +15,10 @@ router.get("/uploadItem", (req, res)=>{
     res.render("upload");
 })
 
+router.get("/", (req, res)=>{
+    res.sendFile(path.join(__dirname, "../public/home.html"));
+})
+
 router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
     let product = {
         product_name : req.body.name,
@@ -51,14 +55,10 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
     }
 })
 
-router.get("/", (req, res)=>{
-    res.sendFile(path.join(__dirname, "../public/home.html"));
-})
-
 router.get("/getItems", async(req, res)=>{
     try{
         let result = await Item.find({sold:false})
-            .select("base_price product_name time_stamp location photos")
+            .select("base_price product_name details photos")
         await result.forEach(i=>{
             const date = new Date();
             if(i.time_stamp<=date){
