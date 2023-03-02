@@ -24,7 +24,14 @@ document.querySelector(".form").addEventListener("submit", (e)=>{
         }
       })
         .then(res => {
-            location.href = "/test1.html";
+			if(res=="done")
+            	location.href = "/test1.html";
+			else{
+				alert("Internal server error")
+				setTimeout(() => {
+					location.reload();
+				}, 2000);
+			}
         })
 })
 
