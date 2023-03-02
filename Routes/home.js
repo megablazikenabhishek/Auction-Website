@@ -15,6 +15,10 @@ router.get("/uploadItem", (req, res)=>{
     res.render("upload");
 })
 
+router.get("/", (req, res)=>{
+    res.sendFile(path.join(__dirname, "../public/home.html"));
+})
+
 router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
     let product = {
         product_name : req.body.name,
@@ -49,10 +53,6 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
         res.status(500).send({msg:"error"})
         console.log(err);
     }
-})
-
-router.get("/", (req, res)=>{
-    res.sendFile(path.join(__dirname, "../public/home.html"));
 })
 
 router.get("/getItems", async(req, res)=>{
