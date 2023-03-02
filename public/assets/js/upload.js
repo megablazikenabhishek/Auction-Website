@@ -5,6 +5,10 @@ document.querySelector(".form").addEventListener("submit", (e)=>{
         alert('please choose a file')
         return;
       }
+	  if(fileElement.files.length>4){
+		alert("Can't have more than 4 photos at once");
+		return;
+	  }
 
       let files = Array.from(fileElement.files);
 
