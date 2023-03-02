@@ -1,6 +1,6 @@
 document.querySelector(".form").addEventListener("submit", (e)=>{
     e.preventDefault();
-    let fileElement = document.getElementById('files')
+    let fileElement = document.getElementById('photos')
       if (fileElement.files.length === 0) {
         alert('please choose a file')
         return;
@@ -24,7 +24,8 @@ document.querySelector(".form").addEventListener("submit", (e)=>{
         }
       })
         .then(res => {
-			if(res=="done")
+			console.log(res);
+			if(res.status==200)
             	location.href = "/test1.html";
 			else{
 				alert("Internal server error")
