@@ -41,15 +41,13 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
         Item.create(product)
             .then(res=>console.log(res))
             .catch(err=>console.log(err))
-            
+
         require("rimraf")("tmp");
         res.send({msg:"done"});
     }catch(err){
         res.status(500).send({msg:"error"})
         console.log(err);
     }
-    
-    // console.log(getTimeStamp(req.body.time_stamp));
 })
 
 router.get("/getItems", async(req, res)=>{
@@ -58,7 +56,6 @@ router.get("/getItems", async(req, res)=>{
         await result.forEach(i=>{
             const date = new Date();
             if(i.time_stamp<=date){
-                // console.log("yess");
                 Item.findOneAndUpdate(i._id, {sold:true})
                     .catch(err=>console.log(err))
             }
