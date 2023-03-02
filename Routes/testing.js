@@ -27,4 +27,14 @@ router.post("/upload", uploader({useTempFiles:true}),  async(req, res)=>{
     require("rimraf")("tmp");
 })
 
+
+//mine
+router.get("/item",async(req,res)=> {
+    const obj = await fetchData();
+    res.render('/item',{ obj });
+});
+
+function fetchData() {
+    return fetch("").then(res => res.json());
+}
 module.exports = router;
