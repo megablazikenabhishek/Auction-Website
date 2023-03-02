@@ -3,6 +3,7 @@ const router = express.Router();
 const uploader = require("express-fileupload");
 const cloudinary = require("../config/cloudinary");
 const Item = require("../models/Items");
+const path = require("path");
 
 const getTimeStamp = (s)=>{
     var date = new Date();
@@ -41,15 +42,17 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
         Item.create(product)
             .then(res=>console.log(res))
             .catch(err=>console.log(err))
-            
+
         require("rimraf")("tmp");
         res.send({msg:"done"});
     }catch(err){
         res.status(500).send({msg:"error"})
         console.log(err);
     }
-    
-    // console.log(getTimeStamp(req.body.time_stamp));
+})
+
+router.get("/", (req, res)=>{
+    res.sendFile(path.join(__dirname, "../public/home.html"));
 })
 
 router.get("/getItems", async(req, res)=>{
@@ -58,7 +61,6 @@ router.get("/getItems", async(req, res)=>{
         await result.forEach(i=>{
             const date = new Date();
             if(i.time_stamp<=date){
-                // console.log("yess");
                 Item.findOneAndUpdate(i._id, {sold:true})
                     .catch(err=>console.log(err))
             }
