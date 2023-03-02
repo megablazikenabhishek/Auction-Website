@@ -57,7 +57,8 @@ router.get("/", (req, res)=>{
 
 router.get("/getItems", async(req, res)=>{
     try{
-        const result = await Item.find({sold:false});
+        let result = await Item.find({sold:false})
+            .select("base_price product_name time_stamp location photos")
         await result.forEach(i=>{
             const date = new Date();
             if(i.time_stamp<=date){

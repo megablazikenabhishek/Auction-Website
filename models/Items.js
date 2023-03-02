@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
-    user_id: String,
+    owner_id: String,
     product_name: String,
     date: { type: Date, default:new Date() },
     time_stamp: Date,
