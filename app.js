@@ -1,8 +1,10 @@
 const express = require("express");
-const path = require("path");
 const app = express();
 const server = require("http").createServer(app)
 require("dotenv").config();
+
+// temporary
+app.use(require("cors")());
 
 /*
 @middlewares: Basic middlewares
