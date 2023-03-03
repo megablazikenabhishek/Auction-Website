@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
-    owner_id: String,
     product_name: String,
     date: { type: Date, default:new Date() },
     time_stamp: Date,
@@ -15,6 +14,13 @@ const ItemSchema = new Schema({
     sold: {type: Boolean, default: false},
     seller_name:String,  
     location: String, 
+    // bid section
+    prev_bid :{
+        type: Number,
+    },
+    current_bid:{
+        type: Number
+    }
 });
 
 

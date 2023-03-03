@@ -16,13 +16,14 @@ router.get("/uploadItem", (req, res)=>{
 })
 
 router.get("/", (req, res)=>{
-    res.sendFile(path.join(__dirname, "../public/home.html"));
+    res.render("home");
 })
 
 router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
     let product = {
         product_name : req.body.name,
         base_price : req.body.base_price,
+        prev_bid: req.body.base_price,
         time_stamp: getTimeStamp(req.body.time_stamp),
         location: req.body.location,
         details: req.body.details,
@@ -44,7 +45,7 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
             }
         }
         Item.create(product)
-            .then(res=>console.log(res))
+            // .then(res=>console.log(res))
             .catch(err=>console.log(err))
 
         require("rimraf")("tmp");
@@ -66,7 +67,7 @@ router.get("/getItems", async(req, res)=>{
                     .catch(err=>console.log(err))
             }
         })
-        console.log(result);
+        // console.log(result);
         res.status(200).json(result);
     }catch(err){
         res.status(500).send({msg:"error"})
