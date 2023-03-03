@@ -209,7 +209,7 @@ nav .logo.space{
 /* /////////////////////////////services /// */
 
 .card_body {
-  margin-top: 80px;
+  padding-top: 30px;
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(350px,auto));
   place-items: center;
@@ -226,7 +226,7 @@ nav .logo.space{
 .card {
   position: relative;
   width: 380px;
-  height: 661px;
+  height: 559px;
   padding: 25px;
   background: #feffff;
   border-radius: 20px;

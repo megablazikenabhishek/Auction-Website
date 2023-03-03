@@ -36,15 +36,6 @@ const render = async () => {
             </div>
           </div>
     
-          <div class="card-sizes">
-            <span class="selected">38</span>
-            <span>39</span>
-            <span>40</span>
-            <span>41</span>
-            <span>42</span>
-            <span>43</span>
-          </div>
-    
           <div class="card-footer">
             <button>Buy now</button>
           </div>
@@ -54,6 +45,8 @@ const render = async () => {
   } catch (error) {
     console.log(error)
   }
+  document.querySelector(".socket").remove();
+  // console.log(document.querySelector(".socket"));
 }
 
 window.addEventListener('load',()=>{
