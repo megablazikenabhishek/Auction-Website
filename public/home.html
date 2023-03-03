@@ -7,6 +7,10 @@
     <!-- <title>Responsive Navbar with Search Box | CodingNepal</title> -->
     <link rel="stylesheet" href="./assets/css/home.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   </head>
   <body>
@@ -32,12 +36,10 @@
                     <button type="submit" class="fas fa-search"></button>
             </form>
 </nav>
-    <section id="services">
-      <div class="container">
-        <h2>Items are as follows:</h2>
-        <div class="items"></div>
-      </div>
-    </section>
+
+    <div class="card_body">
+    </div>
+
 <script>
     const menuBtn = document.querySelector(".menu-icon span");
     const searchBtn = document.querySelector(".search-icon");
@@ -64,7 +66,9 @@
       cancelBtn.classList.add("show");
     }
   </script>
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="./assets/js/home.js"></script>
+
   </body>
 </html>

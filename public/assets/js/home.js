@@ -1,39 +1,65 @@
-
-const services = document.querySelector("#services .items");
 const render = async () => {
   try {
-    const result = await axios.get('/home/getItems');
-    const data = result.data;
+    const products = await axios.get('/home/getItems');
     let item = "";
-    data.forEach(element => {
-        item += `<div class="wsk-cp-product">
-        <div class="wsk-cp-img">
-          <img src= ${element.photos[0]} alt="Product" class="img-responsive" />
-        </div>
-        <div class="wsk-cp-text">
-          <div class="category">
-            <span>Ethnic</span>
-          </div>
-          <div class="title-product">
+    products.data.forEach(element => {
+        item += `
+        <div class="card">
+          <div class="card-header">
             <h3>${element.product_name}</h3>
+            <p>Leather Boots</p>
+            <div>
+              <span>new</span>
+            </div>
           </div>
-          <div class="description-prod">
-            <p>${element.details}</p>
+    
+          <div class="card-img">
+            <img src="${element.photos[0]}" alt="..." />
+            <i class="bx bx-heart"></i>
           </div>
+    
+          <div class="card-details">
+            <div class="price">
+              <p>Price</p>
+              <strong>${element.base_price}</strong>
+            </div>
+            <div class="colors">
+              <div class="selected">
+                <i class="bx bx-check"></i>
+              </div>
+              <div>
+                <i class="bx bx-check"></i>
+              </div>
+              <div>
+                <i class="bx bx-check"></i>
+              </div>
+            </div>
+          </div>
+    
+          <div class="card-sizes">
+            <span class="selected">38</span>
+            <span>39</span>
+            <span>40</span>
+            <span>41</span>
+            <span>42</span>
+            <span>43</span>
+          </div>
+    
           <div class="card-footer">
-            <div class="wcf-left"><span class="price">${element.base_price}</span></div>
-            <div class="wcf-right"><a href="#" class="buy-btn"><i class="zmdi zmdi-shopping-basket"></i></a></div>
+            <button>Buy now</button>
           </div>
-        </div>
-    </div>`
+        </div>`;
     });
-    services.innerHTML = item;
+    document.querySelector('.card_body').innerHTML = item;
   } catch (error) {
     console.log(error)
   }
 }
 
 window.addEventListener('load',()=>{
-    render();
+  render();
 })
+
+
 //https://res.cloudinary.com/dyszi81jo/image/upload/v1677738575/ivdvvksrd3yfvuprqhkj.jpg
+//https://auction-website-o61d.onrender.com/home/getItems

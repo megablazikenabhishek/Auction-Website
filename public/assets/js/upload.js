@@ -30,7 +30,7 @@ document.querySelector(".form").addEventListener("submit", (e)=>{
         .then(res => {
 			console.log(res);
 			if(res.status==200)
-            	location.href = "/test1.html";
+            	location.href = "/home.html";
 			else{
 				alert("Internal server error")
 				setTimeout(() => {
