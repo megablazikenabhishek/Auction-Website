@@ -7,7 +7,7 @@ const render = async () => {
         <div class="card">
           <div class="card-header">
             <h3>${element.product_name}</h3>
-            <p>Leather Boots</p>
+            <p>${element.details}</p>
             <div>
               <span>new</span>
             </div>
