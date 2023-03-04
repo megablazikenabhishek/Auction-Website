@@ -4,17 +4,20 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/assets/css/home.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
     <link
       href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/assets/css/loader.css" />
+    <link rel="stylesheet" href="/assets/fonts/ionicons.min.css" />
   </head>
   <body>
     <nav>
       <div class="menu-icon">
-        <span class="fas fa-bars"></span>
+        <span class="fas fa-bars">
+          <i class="icon ion-android-menu" style="font-size: 30px"></i>
+        </span>
       </div>
       <div class="logo">Auction 2.0</div>
       <div class="nav-items">
@@ -25,10 +28,14 @@
         <li><a href="/logout">Logout</a></li>
       </div>
       <div class="search-icon">
-        <span class="fas fa-search"></span>
+        <span class="fas fa-search">
+          <i class="icon ion-search" style="font-size: 30px"></i>
+        </span>
       </div>
       <div class="cancel-icon">
-        <span class="fas fa-times"></span>
+        <span class="fas fa-times">
+          <i class="icon ion-close-round" style="font-size: 30px"></i>
+        </span>
       </div>
       <form action="#" style="z-index: 9">
         <input
@@ -37,7 +44,9 @@
           placeholder="Search"
           required
         />
-        <button type="submit" class="fas fa-search"></button>
+        <button type="submit" class="fas fa-search">
+          <i class="icon ion-search"></i>
+        </button>
       </form>
     </nav>
     <div class="socket">
