@@ -4,6 +4,7 @@ const uploader = require("express-fileupload");
 const cloudinary = require("../config/cloudinary");
 const Item = require("../models/Items");
 const path = require("path");
+const isAuth = require("../middlewares/authorizationMiddleware");
 
 const getTimeStamp = (s)=>{
     var date = new Date();
@@ -11,6 +12,7 @@ const getTimeStamp = (s)=>{
     return date;
 }
 
+router.use(isAuth);
 router.get("/uploadItem", (req, res)=>{
     res.render("upload");
 })
