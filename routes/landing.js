@@ -6,6 +6,10 @@ const User = require("../models/user");
 
 const {isAuth} = require("../middlewares/authorizationMiddleware");
 
+router.route("/", (req, res)=>{
+    res.redirect("/login");
+})
+
 router.get("/login", (req, res)=>{
     res.render("login");
 });
