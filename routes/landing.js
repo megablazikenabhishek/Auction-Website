@@ -33,11 +33,7 @@ router.post("/signup", async(req, res)=>{
     try {
         await User.findOne({username:req.body.username})
             .then(result=>{
-                // console.log(result);
-                if(result)
-                    res.redirect("/login");
-                else    
-                    res.status(208).send("already have an account");
+                res.redirect("/login");
             })
     } catch (error) {
         console.log(error);
