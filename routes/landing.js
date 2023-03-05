@@ -7,7 +7,7 @@ const User = require("../models/user");
 const { isAuth } = require("../middlewares/authorizationMiddleware");
 
 router.get("/", (req, res) => {
-    res.redirect("/login");
+    res.render("landing");
 })
 
 router.get("/login", (req, res) => {
