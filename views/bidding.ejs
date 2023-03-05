@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Auction Website</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Cookie"
+    />
+    <link rel="stylesheet" href="assets/css/swiper-icons.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/Features-Large-Icons-icons.css" />
+    <link rel="stylesheet" href="assets/css/Pretty-Footer-.css" />
+    <link
+      rel="stylesheet"
+      href="assets/css/Simple-Slider-swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/Simple-Slider.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+      body {
+        /* background: #f2f2f2; */
+        background-color: rgb(88, 56, 250);
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+      }
+      nav {
+        background: #171c24;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        height: 70px;
+        padding: 0 100px;
+        width: 100%;
+      }
+      nav .logo {
+        color: #fff;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: -1px;
+      }
+      nav .nav-items {
+        display: flex;
+        flex: 1;
+        padding: 0 0 0 40px;
+      }
+      nav .nav-items li {
+        list-style: none;
+        padding: 0 15px;
+      }
+      nav .nav-items li a {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        text-decoration: none;
+      }
+      nav .nav-items li a:hover {
+        color: #ff3d00;
+      }
+      nav form {
+        display: flex;
+        height: 40px;
+        padding: 2px;
+        background: #1e232b;
+        min-width: 18% !important;
+        border-radius: 2px;
+        border: 1px solid rgba(155, 155, 155, 0.2);
+      }
+      nav form .search-data {
+        width: 100%;
+        height: 100%;
+        padding: 0 10px;
+        color: #fff;
+        font-size: 17px;
+        border: none;
+        font-weight: 500;
+        background: none;
+      }
+      nav form button {
+        padding: 0 15px;
+        color: #fff;
+        font-size: 17px;
+        background: #ff3d00;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+      }
+      nav form button:hover {
+        background: #e63600;
+      }
+      nav .menu-icon,
+      nav .cancel-icon,
+      nav .search-icon {
+        width: 40px;
+        text-align: center;
+        margin: 0 50px;
+        font-size: 18px;
+        color: #fff;
+        cursor: pointer;
+        display: none;
+      }
+      nav .menu-icon span,
+      nav .cancel-icon,
+      nav .search-icon {
+        display: none;
+      }
+      @media (max-width: 1245px) {
+        nav {
+          padding: 0 50px;
+        }
+      }
+      @media (max-width: 1140px) {
+        nav {
+          padding: 0px;
+        }
+        nav .logo {
+          flex: 2;
+          text-align: center;
+        }
+        nav .nav-items {
+          position: fixed;
+          z-index: 99;
+          top: 70px;
+          width: 100%;
+          left: -100%;
+          height: 100%;
+          padding: 10px 50px 0 50px;
+          text-align: center;
+          background: #14181f;
+          display: inline-block;
+          transition: left 0.3s ease;
+        }
+        nav .nav-items.active {
+          left: 0px;
+        }
+        nav .nav-items li {
+          line-height: 40px;
+          margin: 30px 0;
+        }
+        nav .nav-items li a {
+          font-size: 20px;
+        }
+        nav form {
+          position: absolute;
+          top: 80px;
+          right: 50px;
+          opacity: 0;
+          pointer-events: none;
+          transition: top 0.3s ease, opacity 0.1s ease;
+        }
+        nav form.active {
+          top: 95px;
+          opacity: 1;
+          pointer-events: auto;
+        }
+        nav form:before {
+          position: absolute;
+          content: "";
+          top: -13px;
+          right: 0px;
+          width: 0;
+          height: 0;
+          z-index: -1;
+          border: 10px solid transparent;
+          border-bottom-color: #1e232b;
+          margin: -20px 0 0;
+        }
+        nav form:after {
+          position: absolute;
+          content: "";
+          height: 60px;
+          padding: 2px;
+          background: #1e232b;
+          border-radius: 2px;
+          min-width: calc(100% + 20px);
+          z-index: -2;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+        nav .menu-icon {
+          display: block;
+        }
+        nav .search-icon,
+        nav .menu-icon span {
+          display: block;
+        }
+        nav .menu-icon span.hide,
+        nav .search-icon.hide {
+          display: none;
+        }
+        nav .cancel-icon.show {
+          display: block;
+        }
+      }
+      .space {
+        margin: 10px 0;
+      }
+      nav .logo.space {
+        color: red;
+        padding: 0 5px 0 0;
+      }
+      @media (max-width: 980px) {
+        nav .menu-icon,
+        nav .cancel-icon,
+        nav .search-icon {
+          margin: 0 20px;
+        }
+        nav form {
+          right: 30px;
+        }
+      }
+      @media (max-width: 350px) {
+        nav .menu-icon,
+        nav .cancel-icon,
+        nav .search-icon {
+          margin: 0 10px;
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+
+  <body style="background: var(--bs-gray-100)">
+    <nav>
+      <div class="menu-icon">
+        <span class="fas fa-bars">
+          <i class="icon ion-android-menu" style="font-size: 30px"></i>
+        </span>
+      </div>
+      <div class="logo">Auction 2.0</div>
+      <div class="nav-items">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="/home/uploadItem">UploadItem</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </div>
+      <div class="search-icon">
+        <span class="fas fa-search">
+          <i class="icon ion-search" style="font-size: 30px"></i>
+        </span>
+      </div>
+      <div class="cancel-icon">
+        <span class="fas fa-times">
+          <i class="icon ion-close-round" style="font-size: 30px"></i>
+        </span>
+      </div>
+      <form action="#" style="z-index: 9">
+        <input
+          type="search"
+          class="search-data"
+          placeholder="Search"
+          required
+        />
+        <button type="submit" class="fas fa-search">
+          <i class="icon ion-search"></i>
+        </button>
+      </form>
+    </nav>
+    <div class="simple-slider" style="margin-top: 50px">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div
+            class="swiper-slide"
+            style="
+              background: url('https://res.cloudinary.com/dyszi81jo/image/upload/v1677770721/vmgghlxpdbstmgrqb6ph.png')
+                center center / contain no-repeat;
+            "
+          ></div>
+          <div
+            class="swiper-slide"
+            style="
+              background: url('https://res.cloudinary.com/dyszi81jo/image/upload/v1677770721/vmgghlxpdbstmgrqb6ph.png')
+                center center / contain no-repeat;
+            "
+          ></div>
+          <div
+            class="swiper-slide"
+            style="
+              background: url('https://res.cloudinary.com/dyszi81jo/image/upload/v1677770721/vmgghlxpdbstmgrqb6ph.png')
+                center center / contain no-repeat;
+            "
+          ></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev">
+          <i
+            class="fas fa-arrow-circle-left"
+            id="arrow-id"
+            style="font-size: 54px"
+          ></i>
+        </div>
+        <div class="swiper-button-next">
+          <i
+            class="fas fa-arrow-circle-right"
+            id="arrow-id"
+            style="font-size: 54px"
+          ></i>
+        </div>
+      </div>
+    </div>
+    <div class="container py-4 py-xl-5" style="margin-top: 42px">
+      <div class="row">
+        <div class="col-md-8 col-xl-6 mx-auto p-4" style="width: 717px">
+          <div
+            class="d-flex align-items-center align-items-md-start align-items-xl-center"
+          >
+            <div
+              class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center me-4 d-inline-block bs-icon"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+                class="bi bi-clipboard-data"
+                style="font-size: 44px"
+              >
+                <path
+                  d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"
+                ></path>
+                <path
+                  d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
+                ></path>
+                <path
+                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h4>Description</h4>
+              <p>
+                Erat netus est hendrerit, nullam et quis ad cras porttitor
+                iaculis. Bibendum vulputate cras aenean.
+              </p>
+            </div>
+          </div>
+          <hr class="my-5" />
+          <div
+            class="d-flex align-items-center align-items-md-start align-items-xl-center"
+          >
+            <div
+              class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center order-last ms-4 d-inline-block bs-icon"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="-64 0 512 512"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                style="font-size: 44px"
+              >
+                <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                  d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 256C227.3 256 256 227.3 256 192C256 156.7 227.3 128 192 128C156.7 128 128 156.7 128 192C128 227.3 156.7 256 192 256z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h4>Location</h4>
+              <p>
+                Erat netus est hendrerit, nullam et quis ad cras porttitor
+                iaculis. Bibendum vulputate cras aenean.
+              </p>
+            </div>
+          </div>
+          <hr class="my-5" />
+          <div
+            class="d-flex align-items-center align-items-md-start align-items-xl-center"
+          >
+            <div
+              class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center me-4 d-inline-block bs-icon"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="-96 0 512 512"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                style="font-size: 44px"
+              >
+                <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                  d="M.0022 64C.0022 46.33 14.33 32 32 32H288C305.7 32 320 46.33 320 64C320 81.67 305.7 96 288 96H231.8C241.4 110.4 248.5 126.6 252.4 144H288C305.7 144 320 158.3 320 176C320 193.7 305.7 208 288 208H252.4C239.2 266.3 190.5 311.2 130.3 318.9L274.6 421.1C288.1 432.2 292.3 452.2 282 466.6C271.8 480.1 251.8 484.3 237.4 474L13.4 314C2.083 305.1-2.716 291.5 1.529 278.2C5.774 264.1 18.09 256 32 256H112C144.8 256 173 236.3 185.3 208H32C14.33 208 .0022 193.7 .0022 176C.0022 158.3 14.33 144 32 144H185.3C173 115.7 144.8 96 112 96H32C14.33 96 .0022 81.67 .0022 64V64z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h4>Base Price</h4>
+              <p>
+                Erat netus est hendrerit, nullam et quis ad cras porttitor
+                iaculis. Bibendum vulputate cras aenean.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container py-4 py-xl-5">
+      <div class="row mb-5">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+          <h2>Participate in Bid</h2>
+          <p>See All the stats below</p>
+        </div>
+      </div>
+      <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+        <div class="col">
+          <div
+            class="text-center d-flex flex-column align-items-center align-items-xl-center"
+            style="
+              background: #fed600;
+              padding-bottom: 19px;
+              padding-left: 22px;
+              padding-right: 22px;
+              border-radius: 20px;
+              padding-top: 18px;
+            "
+          >
+            <div
+              class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+                class="bi bi-person-fill"
+                style="font-size: 44px"
+              >
+                <path
+                  d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                ></path>
+              </svg>
+            </div>
+            <div class="px-3">
+              <h4>Current Leader</h4>
+              <p id="lower-p" style="margin-bottom: 0px">Name&nbsp;</p>
+              <h2>Maximum bid:&nbsp;</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-4 py-3">
+          <div
+            class="text-center d-flex flex-column align-items-center align-items-xl-center"
+            style="border-radius: 20px"
+          >
+            <div
+              class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                style="font-size: 44px"
+              >
+                <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                  d="M256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512zM232 256C232 264 236 271.5 242.7 275.1L338.7 339.1C349.7 347.3 364.6 344.3 371.1 333.3C379.3 322.3 376.3 307.4 365.3 300L280 243.2V120C280 106.7 269.3 96 255.1 96C242.7 96 231.1 106.7 231.1 120L232 256z"
+                ></path>
+              </svg>
+            </div>
+            <div class="px-3">
+              <h4>Time Remaining</h4>
+            </div>
+          </div>
+          <h2 id="time">12 : 12 : 12 : 12</h2>
+          <h4 id="time" style="opacity: 0.59">Day : Hrs : Min : Sec</h4>
+        </div>
+        <div class="col text-center py-3">
+          <div
+            class="text-center d-flex flex-column align-items-center align-items-xl-center"
+            style="border-radius: 20px"
+          >
+            <div
+              class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon"
+            >
+              <i
+                class="fab fa-acquisitions-incorporated"
+                style="font-size: 44px"
+              ></i>
+            </div>
+            <div class="px-3">
+              <h4>Place Your Bid</h4>
+            </div>
+          </div>
+          <form class="d-flex justify-content-center align-items-center">
+            <input
+              class="form-control"
+              type="number"
+              style="width: 60%"
+            /><button
+              class="btn btn-primary"
+              data-bss-hover-animate="jello"
+              type="button"
+              style="margin-left: 12px"
+            >
+              Place Bid
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="row">
+        <div class="col-sm-6 col-md-4 footer-navigation">
+          <h3>
+            <a href="#">Company<span>logo </span></a>
+          </h3>
+          <p class="links">
+            <a href="#">Home</a><strong> · </strong><a href="#">Blog</a
+            ><strong> · </strong><a href="#">Pricing</a><strong> · </strong
+            ><a href="#">About</a><strong> · </strong><a href="#">Faq</a
+            ><strong> · </strong><a href="#">Contact</a>
+          </p>
+          <p class="company-name">Company Name © 2023</p>
+        </div>
+        <div class="col-sm-6 col-md-4 footer-contacts">
+          <div>
+            <span class="fa fa-map-marker footer-contacts-icon"> </span>
+            <p>
+              <span class="new-line-span">21 Revolution Street</span> Paris,
+              France
+            </p>
+          </div>
+          <div>
+            <i class="fa fa-phone footer-contacts-icon"></i>
+            <p class="footer-center-info email text-start">+1 555 123456</p>
+          </div>
+          <div>
+            <i class="fa fa-envelope footer-contacts-icon"></i>
+            <p><a href="#" target="_blank">support@company.com</a></p>
+          </div>
+        </div>
+        <div class="col-md-4 footer-about">
+          <h4>About the company</h4>
+          <p>
+            Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce
+            euismod convallis velit, eu auctor lacus vehicula sit amet.
+          </p>
+          <div class="social-links social-icons">
+            <a href="#"><i class="fa fa-facebook" style="color: white"></i></a
+            ><a href="#"><i class="fa fa-twitter" style="color: white"></i></a
+            ><a href="#"><i class="fa fa-linkedin" style="color: white"></i></a
+            ><a href="#"><i class="fa fa-github" style="color: white"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const menuBtn = document.querySelector(".menu-icon span");
+      const searchBtn = document.querySelector(".search-icon");
+      const cancelBtn = document.querySelector(".cancel-icon");
+      const items = document.querySelector(".nav-items");
+      const form = document.querySelector("form");
+      menuBtn.onclick = () => {
+        items.classList.add("active");
+        menuBtn.classList.add("hide");
+        searchBtn.classList.add("hide");
+        cancelBtn.classList.add("show");
+      };
+      cancelBtn.onclick = () => {
+        items.classList.remove("active");
+        menuBtn.classList.remove("hide");
+        searchBtn.classList.remove("hide");
+        cancelBtn.classList.remove("show");
+        form.classList.remove("active");
+        cancelBtn.style.color = "#ff3d00";
+      };
+      searchBtn.onclick = () => {
+        form.classList.add("active");
+        searchBtn.classList.add("hide");
+        cancelBtn.classList.add("show");
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/assets/js/upload.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/Simple-Slider-swiper-bundle.min.js"></script>
+    <script src="assets/js/Simple-Slider.js"></script>
+  </body>
+</html>
