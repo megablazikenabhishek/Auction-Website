@@ -41,9 +41,17 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
         else{
             for(let j=0; j<req.files.photos.length; j++){
                 let i = req.files.photos[j];
-                await cloudinary.uploader.upload(i.tempFilePath, (err, result)=>{
-                    product.photos.push(result.url);
-                }).catch(err=>console.log(err))
+                await new Promise((resolve)=>{
+                    cloudinary.uploader.upload(i.tempFilePath, (err, result)=>{
+                        try {
+                            product.photos.push(result.url);
+                            resolve();
+                        } catch (error) {
+                            require("rimraf")("tmp");
+                            console.log(error);
+                        }
+                    }).catch(err=>console.log(err))
+                })
             }
         }
         Item.create(product)
