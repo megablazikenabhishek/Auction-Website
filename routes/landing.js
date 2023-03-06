@@ -24,7 +24,7 @@ router.post("/login", passport.authenticate("local", {
 }));
 
 router.post("/signup", async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     const saltHash = genPassword(req.body.password);
 
     const salt = saltHash.salt;
@@ -39,9 +39,9 @@ router.post("/signup", async (req, res) => {
     });
 
     newUser.save()
-        .then((user) => {
-            console.log(user);
-        })
+        // .then((user) => {
+        //     console.log(user);
+        // })
         .catch(err=>console.log(err));
 
     res.redirect('/login');
