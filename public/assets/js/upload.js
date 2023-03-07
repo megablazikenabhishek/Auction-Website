@@ -24,7 +24,7 @@ document.querySelector(".form").addEventListener("submit", (e)=>{
       console.log(formData);
       axios.post("/home/uploadItem", formData, {
         onUploadProgress: progressEvent => {
-          document.querySelector("body").innerHTML = loader1;
+          document.querySelector("body").innerHTML = loader;
         }
       })
         .then(res => {

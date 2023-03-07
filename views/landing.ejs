@@ -71,7 +71,7 @@
           </ul>
         </nav>
 
-        <button class="btn btn-secondary">Get Started</button>
+        <button class="btn btn-secondary" id="home">Get Started</button>
 
         <button
           class="nav-toggle-btn"
@@ -905,5 +905,11 @@
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
+    <script>
+      document.getElementById("home").addEventListener("click", () => {
+        console.log("hii");
+        location.href = "/login";
+      });
+    </script>
   </body>
 </html>

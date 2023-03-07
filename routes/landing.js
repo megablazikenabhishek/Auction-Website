@@ -35,7 +35,7 @@ router.post("/signup", async (req, res) => {
         email: req.body.email,
         hash: hash,
         salt: salt,
-        admin: false
+        name: req.body.name
     });
 
     newUser.save()

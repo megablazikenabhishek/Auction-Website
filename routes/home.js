@@ -13,11 +13,13 @@ const getTimeStamp = (s)=>{
 }
 
 router.use(isAuth);
+router.use("/bid", require("./bidding"));
 router.get("/uploadItem", (req, res)=>{
     res.render("upload");
 })
 
 router.get("/", (req, res)=>{
+    // console.log(req.user);
     res.render("home");
 })
 
@@ -25,11 +27,17 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
     let product = {
         product_name : req.body.name,
         base_price : req.body.base_price,
-        prev_bid: req.body.base_price,
+        current_bid: {
+            amount: req.body.base_price,
+        },
         time_stamp: getTimeStamp(req.body.time_stamp),
         location: req.body.location,
         details: req.body.details,
-        photos: []
+        photos: [],
+        seller:{
+            name: req.user.name,
+            _id: req.user.id
+        }
     };
 
     try{
@@ -68,12 +76,12 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
 
 router.get("/getItems", async(req, res)=>{
     try{
-        let result = await Item.find({sold:false})
+        let result = await Item.find({sold:false, expired: false})
             .select("base_price product_name details photos")
         await result.forEach(i=>{
             const date = new Date();
             if(i.time_stamp<=date){
-                Item.findOneAndUpdate(i._id, {sold:true})
+                Item.findOneAndUpdate(i._id, {expired:true})
                     .catch(err=>console.log(err))
             }
         })
