@@ -233,6 +233,7 @@ nav .logo.space{
 
   box-shadow: 0 10px 40px rgba(33, 32, 32, 0.5);
   transition: 0.4s;
+  cursor: pointer;
 }
 
 .card:hover {

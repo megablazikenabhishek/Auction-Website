@@ -15,7 +15,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Cookie"
     />
-    <link rel="stylesheet" href="assets/css/swiper-icons.css" />
+    <link rel="stylesheet" href="/assets/css/swiper-icons.css" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
@@ -24,18 +24,21 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css" />
+    <link
+      rel="stylesheet"
+      href="/assets/fonts/fontawesome5-overrides.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
     />
-    <link rel="stylesheet" href="assets/css/Features-Large-Icons-icons.css" />
-    <link rel="stylesheet" href="assets/css/Pretty-Footer-.css" />
+    <link rel="stylesheet" href="/assets/css/Features-Large-Icons-icons.css" />
+    <link rel="stylesheet" href="/assets/css/Pretty-Footer-.css" />
     <link
       rel="stylesheet"
-      href="assets/css/Simple-Slider-swiper-bundle.min.css"
+      href="/assets/css/Simple-Slider-swiper-bundle.min.css"
     />
-    <link rel="stylesheet" href="assets/css/Simple-Slider.css" />
+    <link rel="stylesheet" href="/assets/css/Simple-Slider.css" />
     <style>
       @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap");
       * {
@@ -290,27 +293,14 @@
     <div class="simple-slider" style="margin-top: 50px">
       <div class="swiper-container">
         <div class="swiper-wrapper">
+          <% photos.forEach(element => { %>
           <div
             class="swiper-slide"
             style="
-              background: url('https://res.cloudinary.com/dyszi81jo/image/upload/v1677770721/vmgghlxpdbstmgrqb6ph.png')
-                center center / contain no-repeat;
+              background: url('<%=element%>') center center / contain no-repeat;
             "
           ></div>
-          <div
-            class="swiper-slide"
-            style="
-              background: url('https://res.cloudinary.com/dyszi81jo/image/upload/v1677770721/vmgghlxpdbstmgrqb6ph.png')
-                center center / contain no-repeat;
-            "
-          ></div>
-          <div
-            class="swiper-slide"
-            style="
-              background: url('https://res.cloudinary.com/dyszi81jo/image/upload/v1677770721/vmgghlxpdbstmgrqb6ph.png')
-                center center / contain no-repeat;
-            "
-          ></div>
+          <% }) %>
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev">
@@ -360,15 +350,13 @@
             </div>
             <div>
               <h4>Description</h4>
-              <p>
-                Erat netus est hendrerit, nullam et quis ad cras porttitor
-                iaculis. Bibendum vulputate cras aenean.
-              </p>
+              <p><%= details %></p>
             </div>
           </div>
           <hr class="my-5" />
           <div
             class="d-flex align-items-center align-items-md-start align-items-xl-center"
+            style="justify-content: end"
           >
             <div
               class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center order-last ms-4 d-inline-block bs-icon"
@@ -389,10 +377,7 @@
             </div>
             <div>
               <h4>Location</h4>
-              <p>
-                Erat netus est hendrerit, nullam et quis ad cras porttitor
-                iaculis. Bibendum vulputate cras aenean.
-              </p>
+              <p><%=location%></p>
             </div>
           </div>
           <hr class="my-5" />
@@ -418,10 +403,7 @@
             </div>
             <div>
               <h4>Base Price</h4>
-              <p>
-                Erat netus est hendrerit, nullam et quis ad cras porttitor
-                iaculis. Bibendum vulputate cras aenean.
-              </p>
+              <p><%= base_price%></p>
             </div>
           </div>
         </div>
@@ -466,8 +448,10 @@
             </div>
             <div class="px-3">
               <h4>Current Leader</h4>
-              <p id="lower-p" style="margin-bottom: 0px">Name&nbsp;</p>
-              <h2>Maximum bid:&nbsp;</h2>
+              <p id="lower-p" style="margin-bottom: 0px" class="leader-name">
+                <%= current_bid.name %>&nbsp;
+              </p>
+              <h2 class="leader-amount"><%= current_bid.amount %>₹&nbsp;</h2>
             </div>
           </div>
         </div>
@@ -517,16 +501,23 @@
               <h4>Place Your Bid</h4>
             </div>
           </div>
-          <form class="d-flex justify-content-center align-items-center">
+          <form
+            class="d-flex justify-content-center align-items-center"
+            id="bid-form"
+          >
             <input
               class="form-control"
               type="number"
+              id="bid-input"
               style="width: 60%"
+              min="<%= (base_price+1) %>"
+              autocomplete="off"
+              required
             /><button
               class="btn btn-primary"
               data-bss-hover-animate="jello"
-              type="button"
               style="margin-left: 12px"
+              type="submit"
             >
               Place Bid
             </button>
@@ -606,11 +597,76 @@
         cancelBtn.classList.add("show");
       };
     </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var end = new Date("<%= time_stamp  %>");
+      // socket
+      const socket = io();
+      socket.emit("join-room", "<%= _id %>");
+      let user_id = "<%= user_id %>";
+      let name = "<%= name %>";
+      let product_id = "<%= _id %>";
+
+      var _second = 1000;
+      var _minute = _second * 60;
+      var _hour = _minute * 60;
+      var _day = _hour * 24;
+
+      function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+          // close-bid
+          socket.emit("close-bid", product_id);
+          alert("bid closed");
+          location.redirect = "/home";
+          return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById("time").innerHTML = days + ": ";
+        document.getElementById("time").innerHTML += hours + ": ";
+        document.getElementById("time").innerHTML += minutes + ": ";
+        document.getElementById("time").innerHTML += seconds;
+        // console.log(days);
+      }
+      setInterval(showRemaining, 1000);
+
+      // socket
+      const bid_input = document.getElementById("bid-input");
+
+      // placing a bid
+      document.querySelector("#bid-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        socket.emit("place-bid", {
+          user_id,
+          name,
+          bid: bid_input.value,
+          product_id,
+        });
+        document.querySelector(".leader-name").textContent = name;
+        document.querySelector(".leader-amount").textContent =
+          bid_input.value + "₹";
+        // bid_input.min = Number(data.amount);
+        bid_input.setAttribute("min", Number(bid_input.value) + 1);
+      });
+
+      socket.on("new-bid", (data) => {
+        console.log(data);
+        document.querySelector(".leader-name").textContent = data.name;
+        document.querySelector(".leader-amount").textContent =
+          data.amount + "₹";
+        // bid_input.min = Number(data.amount);
+        bid_input.setAttribute("min", Number(data.amount) + 1);
+      });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/assets/js/upload.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/Simple-Slider-swiper-bundle.min.js"></script>
-    <script src="assets/js/Simple-Slider.js"></script>
+    <script src="/assets/js/bs-init.js"></script>
+    <script src="/assets/js/Simple-Slider-swiper-bundle.min.js"></script>
+    <script src="/assets/js/Simple-Slider.js"></script>
   </body>
 </html>

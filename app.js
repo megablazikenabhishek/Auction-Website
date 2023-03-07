@@ -50,9 +50,6 @@ require("./config/socket");
 app.use("/", require("./routes/landing"));
 app.use("/test",require("./routes/testing"));
 app.use("/home",require("./routes/home"));
-app.get("/bid", (req, res)=>{
-    res.render("bidding");
-})
 
 
 const port = 4200||process.env.PORT;

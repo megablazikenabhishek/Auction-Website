@@ -12,14 +12,34 @@ const ItemSchema = new Schema({
     details: String,
     base_price: Number,
     sold: {type: Boolean, default: false},
-    seller_name:String,  
+    expired:{type: Boolean, default: false},
     location: String, 
+    
     // bid section
-    prev_bid :{
-        type: Number,
-    },
+    seller:{
+        name: String,
+        _id: String,
+    }, 
     current_bid:{
-        type: Number
+        amount: Number,
+        name: {
+            type: String, 
+            default: "-none-"
+        },
+        user_id:{
+            type: String,
+            default: "-none"
+        }
+    },
+    winner:{
+        name: {
+            type: String,
+            default: "-none-"
+        },
+        _id : {
+            type: String,
+            default: "-none-"
+        }
     }
 });
 

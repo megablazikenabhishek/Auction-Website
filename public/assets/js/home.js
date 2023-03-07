@@ -4,7 +4,7 @@ const render = async () => {
     let item = "";
     products.data.forEach(element => {
         item += `
-        <div class="card">
+        <div class="card" id="${element._id}">
           <div class="card-header">
             <h3>${element.product_name}</h3>
             <p>${element.details}</p>
@@ -42,6 +42,12 @@ const render = async () => {
         </div>`;
     });
     document.querySelector('.card_body').innerHTML = item;
+    products.data.forEach(element=>{
+      const target = document.getElementById(element._id);
+        target.addEventListener("click", ()=>{
+            location.href = `home/bid/${target.id}`;
+        })
+    })
   } catch (error) {
     console.log(error)
   }
