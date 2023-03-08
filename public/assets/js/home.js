@@ -21,7 +21,7 @@ const render = async () => {
           <div class="card-details">
             <div class="price">
               <p>Current Bid</p>
-              <strong>${element.current_bid.amount}</strong>
+              <strong>₹${element.current_bid.amount}</strong>
             </div>
             <div class="colors">
               <div class="selected">
