@@ -1,9 +1,10 @@
-const render = async () => {
+const render =
+    async () => {
   try {
     const products = await axios.get('/home/getItems');
     let item = "";
     products.data.forEach(element => {
-        item += `
+      item += `
         <div class="card" id="${element._id}">
           <div class="card-header">
             <h3>${element.product_name}</h3>
@@ -42,11 +43,10 @@ const render = async () => {
         </div>`;
     });
     document.querySelector('.card_body').innerHTML = item;
-    products.data.forEach(element=>{
+    products.data.forEach(element => {
       const target = document.getElementById(element._id);
-        target.addEventListener("click", ()=>{
-            location.href = `/home/bid/${target.id}`;
-        })
+      target.addEventListener(
+          "click", () => { location.href = `/home/bid/${target.id}`; })
     })
   } catch (error) {
     console.log(error)
@@ -55,10 +55,7 @@ const render = async () => {
   // console.log(document.querySelector(".socket"));
 }
 
-window.addEventListener('load',()=>{
-  render();
-})
+                window.addEventListener('load', () => { render(); })
 
-
-//https://res.cloudinary.com/dyszi81jo/image/upload/v1677738575/ivdvvksrd3yfvuprqhkj.jpg
-//https://auction-website-o61d.onrender.com/home/getItems
+                // https://res.cloudinary.com/dyszi81jo/image/upload/v1677738575/ivdvvksrd3yfvuprqhkj.jpg
+                // https://auction-website-o61d.onrender.com/home/getItems
