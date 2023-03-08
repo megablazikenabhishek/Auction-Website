@@ -12,12 +12,12 @@ const render = async () => {
               <span>new</span>
             </div>
           </div>
-    
+
           <div class="card-img">
             <img src="${element.photos[0]}" alt="..." />
             <i class="bx bx-heart"></i>
           </div>
-    
+
           <div class="card-details">
             <div class="price">
               <p>Current Bid</p>
@@ -35,7 +35,7 @@ const render = async () => {
               </div>
             </div>
           </div>
-    
+
           <div class="card-footer">
             <button>Buy now</button>
           </div>
