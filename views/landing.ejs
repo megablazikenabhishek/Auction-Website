@@ -113,20 +113,24 @@
                 friendly and secure environment between sellers and buyers
               </p>
 
-              <form action="" class="hero-form">
-                <input
+              <!-- <form action="" class="hero-form"> -->
+              <!-- <input
                   type="email"
                   name="email_address"
                   placeholder="Enter Your Email"
                   aria-label="Enter Your Email"
                   required
                   class="input-field"
-                />
+                /> -->
 
-                <button type="submit" class="btn btn-primary">
-                  Start Free Trial
-                </button>
-              </form>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                onclick="redirect()"
+              >
+                Get Started
+              </button>
+              <!-- </form> -->
 
               <ul class="hero-list">
                 <li class="hero-item">
@@ -344,7 +348,7 @@
                     class="item-icon"
                   />
 
-                  <h3 class="item-title">Automate Instagram</h3>
+                  <h3 class="item-title">Upload Products</h3>
                 </li>
 
                 <li class="features-item">
@@ -357,7 +361,7 @@
                     class="item-icon"
                   />
 
-                  <h3 class="item-title">Chatting facilty</h3>
+                  <h3 class="item-title">Authentication</h3>
                 </li>
 
                 <li class="features-item">
@@ -511,7 +515,7 @@
 
                   <div class="card-content">
                     <h3 class="h3">
-                      <a href="#" class="card-title">After Chats</a>
+                      <a href="#" class="card-title">Upload Products</a>
                     </h3>
 
                     <p class="card-text">
@@ -629,7 +633,7 @@
                   <span class="span">software</span>
                 </h3>
 
-                <p class="stats-text">Integration Support In Techx</p>
+                <p class="stats-text">Integration Support In Auction 2.0</p>
               </li>
             </ul>
           </div>
@@ -910,6 +914,12 @@
         console.log("hii");
         location.href = "/login";
       });
+
+      function redirect() {
+        // e.preventDefault();
+        console.log("hii");
+        location.href = "/login";
+      }
     </script>
   </body>
 </html>
