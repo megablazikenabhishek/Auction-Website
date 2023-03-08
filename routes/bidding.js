@@ -4,7 +4,7 @@ const Item = require("../models/Items");
 const moment = require("moment");
 
 router.get("/:id", async(req, res)=>{
-    // console.log(req.params);
+    console.log(req.params);
     const {id} = req.params;
     try {
         let {photos, base_price, details, location, current_bid, time_stamp, _id} = await Item.findOne({

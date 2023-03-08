@@ -20,8 +20,8 @@ const render = async () => {
     
           <div class="card-details">
             <div class="price">
-              <p>Price</p>
-              <strong>${element.base_price}</strong>
+              <p>Current Bid</p>
+              <strong>₹${element.current_bid.amount}</strong>
             </div>
             <div class="colors">
               <div class="selected">
@@ -45,7 +45,7 @@ const render = async () => {
     products.data.forEach(element=>{
       const target = document.getElementById(element._id);
         target.addEventListener("click", ()=>{
-            location.href = `home/bid/${target.id}`;
+            location.href = `/home/bid/${target.id}`;
         })
     })
   } catch (error) {
