@@ -77,7 +77,7 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
 router.get("/getItems", async(req, res)=>{
     try{
         let result = await Item.find({sold:false, expired: false})
-            .select("base_price product_name details photos")
+            .select("current_bid product_name details photos")
         await result.forEach(i=>{
             const date = new Date();
             if(i.time_stamp<=date){
