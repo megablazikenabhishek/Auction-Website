@@ -77,13 +77,14 @@ router.post("/uploadItem", uploader({useTempFiles:true}) , async(req, res)=>{
 router.get("/getItems", async(req, res)=>{
     try{
         let result = await Item.find({sold:false, expired: false})
-            .select("current_bid product_name details photos")
-        await result.forEach(i=>{
+            .select("current_bid product_name details photos time_stamp")
+        result.map(async i=>{
             const date = new Date();
             if(i.time_stamp<=date){
-                Item.findOneAndUpdate(i._id, {expired:true})
-                    .catch(err=>console.log(err))
-            }
+                await Item.findOneAndUpdate(i._id, {expired:true})
+                .catch(err=>console.log(err))
+            }else   
+            return i;
         })
         // console.log(result);
         res.status(200).json(result);
