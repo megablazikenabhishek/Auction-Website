@@ -57,6 +57,7 @@ const start = async()=>{
     try {
         await require("./config/connection")(process.env.MONGO_URI);
         await require("./config/cloudinary");
+        require("./config/cron_job");
         server.listen(port, ()=>console.log(`Server is listening at port ${port}........`));
     } catch (error) {
         console.log(error);   
