@@ -65,7 +65,7 @@ switchMode.addEventListener("change", function () {
 
 const render = async () => {
   try {
-    // const obj = await axios.get("https://dummyjson.com/products");
+    const obj = await axios.get("https://dummyjson.com/products");
     console.log(obj);
     let item = "";
     obj.data.products.forEach((element) => {
