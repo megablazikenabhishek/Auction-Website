@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Item = require("../models/Items");
-const moment = require("moment");
 
 router.get("/:id", async(req, res)=>{
     // console.log(req.params);

@@ -84,11 +84,15 @@ router.get("/getItems", async(req, res)=>{
             .select("current_bid product_name details photos time_stamp")
         result.map(async i=>{
             const date = new Date();
-            if(i.time_stamp<=date){
+            if(i.time_stamp<=date && i.current_bid.name !== "-none-"){
+                await Item.findOneAndUpdate(i._id, {expired:true, sold: true})
+                .catch(err=>console.log(err))
+            }
+            else if(i.time_stamp<=date){
                 await Item.findOneAndUpdate(i._id, {expired:true})
                 .catch(err=>console.log(err))
             }else   
-            return i;
+              return i;
         })
         // console.log(result);
         res.status(200).json(result);
