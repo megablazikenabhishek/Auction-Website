@@ -69,7 +69,8 @@ const render = async () => {
     console.log(obj);
     let item = "";
     obj.data.products.forEach((element) => {
-      item += `<div class="order">
+      item += `
+	<div class="order">
 		<div class="head">
 			<h3>Recent Orders</h3>
 			<i class='bx bx-search' ></i>
@@ -80,6 +81,7 @@ const render = async () => {
 				<tr>
 					<th>User</th>
 					<th>Date Order</th>
+					<th>price</th>
 					<th>Status</th>
 				</tr>
 			</thead>
@@ -90,6 +92,7 @@ const render = async () => {
 						<p>John Doe</p>
 					</td>
 					<td>01-10-2021</td>
+					<td>01-10-2021</td>
 					<td><span class="status completed">Completed</span></td>
 				</tr>
 				<tr>
@@ -98,6 +101,7 @@ const render = async () => {
 						<p>John Doe</p>
 					</td>
 					<td>01-10-2021</td>
+					<td>01-10-2021</td>
 					<td><span class="status pending">Pending</span></td>
 				</tr>
 				<tr>
@@ -105,6 +109,7 @@ const render = async () => {
 						<img src="img/people.png">
 						<p>John Doe</p>
 					</td>
+					<td>01-10-2021</td>
 					<td>01-10-2021</td>
 					<td><span class="status process">Process</span></td>
 				</tr>
@@ -114,6 +119,7 @@ const render = async () => {
 						<p>John Doe</p>
 					</td>
 					<td>01-10-2021</td>
+					<td>01-10-2021</td>
 					<td><span class="status pending">Pending</span></td>
 				</tr>
 				<tr>
@@ -121,6 +127,7 @@ const render = async () => {
 						<img src="img/people.png">
 						<p>John Doe</p>
 					</td>
+					<td>01-10-2021</td>
 					<td>01-10-2021</td>
 					<td><span class="status completed">Completed</span></td>
 				</tr>
@@ -135,9 +142,9 @@ const render = async () => {
   }
 };
 
-window.addEventListener("load", () => {
-  render();
-});
+// window.addEventListener("load", () => {
+//   render();
+// });
 
 // https://res.cloudinary.com/dyszi81jo/image/upload/v1677738575/ivdvvksrd3yfvuprqhkj.jpg
 // https://auction-website-o61d.onrender.com/home/getItems
