@@ -3,7 +3,7 @@ const router = express.Router();
 const Item = require("../models/Items");
 const format = require("date-format");
 
-
+router.use(require("../middlewares/authorizationMiddleware"));
 router.get("/", async(req, res)=>{
     try {
         let list = await Item.find({"seller.name":req.user.name, "seller._id": req.user._id})
