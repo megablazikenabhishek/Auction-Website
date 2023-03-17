@@ -1,10 +1,10 @@
 const render = async () => {
-	try {
-	  const obj = await axios.get("https://dummyjson.com/products");
-	  console.log(obj);
-	  let item = "";
-	  obj.data.products.forEach((element) => {
-		item += `<div class="order">
+  try {
+    const obj = await axios.get("https://dummyjson.com/products");
+    console.log(obj);
+    let item = "";
+    obj.data.products.forEach((element) => {
+      item += `<div class="order">
 		<div class="head">
 			<h3>Recent Orders</h3>
 			<i class='bx bx-search' ></i>
@@ -79,17 +79,16 @@ const render = async () => {
 		</table>
 	</div>
 		  `;
-	  });
-	  document.querySelector(".table-data").innerHTML = item;
-	} catch (error) {
-	  console.log(error);
-	}
-  };
-  
-  window.addEventListener("load", () => {
-	render();
-  });
-  
-  // https://res.cloudinary.com/dyszi81jo/image/upload/v1677738575/ivdvvksrd3yfvuprqhkj.jpg
-  // https://auction-website-o61d.onrender.com/home/getItems
-  
+    });
+    document.querySelector(".table-data").innerHTML = item;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+window.addEventListener("load", () => {
+  render();
+});
+
+// https://res.cloudinary.com/dyszi81jo/image/upload/v1677738575/ivdvvksrd3yfvuprqhkj.jpg
+// https://auction-website-o61d.onrender.com/home/getItems
