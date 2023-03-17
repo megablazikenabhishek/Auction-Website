@@ -86,7 +86,9 @@ const render = async () => {
   }
 };
 
-window.addEventListener("load", () => { render(); });
+window.addEventListener("load", () => {
+  render();
+});
 
 // https://res.cloudinary.com/dyszi81jo/image/upload/v1677738575/ivdvvksrd3yfvuprqhkj.jpg
 // https://auction-website-o61d.onrender.com/home/getItems
