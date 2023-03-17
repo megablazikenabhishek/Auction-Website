@@ -341,7 +341,7 @@ nav{
 	color: var(--dark);
 }
 #content main .box-info li .text p {
-	color: var(--dark);	
+	color: var(--dark);
 }
 
 
@@ -380,7 +380,7 @@ nav{
 
 #content main .table-data .order {
 	flex-grow: 1;
-	flex-basis: 500px; 
+	flex-basis: 500px;
 }
 #content main .table-data .order table {
 	width: 100%;
