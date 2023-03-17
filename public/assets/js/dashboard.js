@@ -1,6 +1,6 @@
 const render = async () => {
   try {
-    const obj = await axios.get("https://dummyjson.com/products");
+    // const obj = await axios.get("https://dummyjson.com/products");
     console.log(obj);
     let item = "";
     obj.data.products.forEach((element) => {
@@ -86,9 +86,9 @@ const render = async () => {
   }
 };
 
-window.addEventListener("load", () => {
-  render();
-});
+// window.addEventListener("load", () => {
+//   render();
+// });
 
 // https://res.cloudinary.com/dyszi81jo/image/upload/v1677738575/ivdvvksrd3yfvuprqhkj.jpg
 // https://auction-website-o61d.onrender.com/home/getItems

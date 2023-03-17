@@ -4,28 +4,31 @@ const router = express.Router();
 const nodemailer = require("nodemailer");
 
 router.get("/", async(req, res)=>{
-    let testAccount = await nodemailer.createTestAccount();
-
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        auth: {
-            user: 'kelley.dietrich@ethereal.email',
-            pass: '1Z4vQJ9XD8UfXbvzUd'
-        },
+    var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS
+    }
     });
 
-    let info = await transporter.sendMail({
-        from: '"Fred Foo 👻" <hii@gmail.com>', // sender address
-        to: "megablazikenabhishek@gmail.com", // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Hello world?", // plain text body
-        html: "<b>Hello world?</b>", // html body
-    });
+    var mailOptions = {
+        from: 'megablazikenabhishek@gmail.com',
+        to: 'megablazikenabhishek@gmail.com',
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!',
+        html: '<h1> HI </h1>'
+    };
 
-    console.log("Message sent: %s", info.messageId);
-    res.send("hiii");
+    transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+        res.status(505).send("Internal Server Error!!")
+        console.log(error);
+    } else {
+        res.send('Email Sent!')
+    }
+    });
+    // res.json(info);
 })
 
 module.exports = router;
