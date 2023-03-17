@@ -427,6 +427,15 @@ nav{
 	background: var(--orange);
 }
 
+.but {
+	font-size: 12px;
+	padding: 6px 18px;
+	color: var(--light);
+	border-radius: 20px;
+	font-weight: 700;
+	background-color: lightgreen;
+	cursor: pointer;
+}
 
 /* MAIN */
 /* CONTENT */

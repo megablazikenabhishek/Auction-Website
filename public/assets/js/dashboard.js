@@ -16,6 +16,7 @@ const render = async () => {
 					<th>User</th>
 					<th>Date Order</th>
 					<th>Status</th>
+					<th>Update</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,6 +27,9 @@ const render = async () => {
 					</td>
 					<td>01-10-2021</td>
 					<td><span class="status completed">Completed</span></td>
+					<td>
+					<button class="but" role="button">Resell</button>
+					</td>
 				</tr>
 				<tr>
 					<td>
@@ -34,6 +38,9 @@ const render = async () => {
 					</td>
 					<td>01-10-2021</td>
 					<td><span class="status pending">Pending</span></td>
+					<td>
+					<button class="but" role="button">Resell</button>
+					</td>
 				</tr>
 				<tr>
 					<td>
@@ -42,6 +49,9 @@ const render = async () => {
 					</td>
 					<td>01-10-2021</td>
 					<td><span class="status process">Process</span></td>
+					<td>
+					<button class="but" role="button">Resell</button>
+					</td>
 				</tr>
 				<tr>
 					<td>
@@ -50,6 +60,9 @@ const render = async () => {
 					</td>
 					<td>01-10-2021</td>
 					<td><span class="status pending">Pending</span></td>
+					<td>
+					<button class="but" role="button">Resell</button>
+					</td>
 				</tr>
 				<tr>
 					<td>
@@ -58,6 +71,9 @@ const render = async () => {
 					</td>
 					<td>01-10-2021</td>
 					<td><span class="status completed">Completed</span></td>
+					<td>
+					<button class="but" role="button">Resell</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
