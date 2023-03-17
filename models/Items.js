@@ -39,7 +39,8 @@ const ItemSchema = new Schema({
         _id : {
             type: String,
             default: "-none-"
-        }
+        },
+        amount: Number
     }
 });
 

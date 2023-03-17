@@ -51,6 +51,7 @@ app.use("/", require("./routes/landing"));
 app.use("/test",require("./routes/testing"));
 app.use("/home",require("./routes/home"));
 app.use("/profile", require("./routes/profile"));
+app.use("/auth", require("./routes/auth"));
 
 
 const port = 4200||process.env.PORT;

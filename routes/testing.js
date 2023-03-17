@@ -1,30 +1,34 @@
 const express = require("express");
 const path = require("path");
 const router = express.Router();
-const uploader = require("express-fileupload");
-const cloudinary = require("../config/cloudinary");
-// const 
+const nodemailer = require("nodemailer");
 
-router.get("/room1", (req, res)=>{
-    res.sendFile(path.join(__dirname, "../public/test1.html"));
-})
+router.get("/", async(req, res)=>{
+    var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS
+    }
+    });
 
-router.get("/room2", (req, res)=>{
-    res.sendFile(path.join(__dirname, "../public/test2.html"));
-})
+    var mailOptions = {
+        from: 'megablazikenabhishek@gmail.com',
+        to: 'megablazikenabhishek@gmail.com',
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!',
+        html: '<h1> HI </h1>'
+    };
 
-router.get("/ejs", (req, res)=>{
-    res.render("index", {name:"Abhii", array:[1, 2, 3, 4]});
-})
-
-router.post("/upload", uploader({useTempFiles:true}),  async(req, res)=>{
-    console.log(req.files.images);
-    await cloudinary.uploader.upload(req.files.images.tempFilePath, (err, result)=>{
-        console.log(result);
-    }).catch(err=>console.log(err))
-    
-    res.send("done");
-    require("rimraf")("tmp");
+    transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+        res.status(505).send("Internal Server Error!!")
+        console.log(error);
+    } else {
+        res.send('Email Sent!')
+    }
+    });
+    // res.json(info);
 })
 
 module.exports = router;
