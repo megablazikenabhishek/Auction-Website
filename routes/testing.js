@@ -1,30 +1,31 @@
 const express = require("express");
 const path = require("path");
 const router = express.Router();
-const uploader = require("express-fileupload");
-const cloudinary = require("../config/cloudinary");
-// const 
+const nodemailer = require("nodemailer");
 
-router.get("/room1", (req, res)=>{
-    res.sendFile(path.join(__dirname, "../public/test1.html"));
-})
+router.get("/", async(req, res)=>{
+    let testAccount = await nodemailer.createTestAccount();
 
-router.get("/room2", (req, res)=>{
-    res.sendFile(path.join(__dirname, "../public/test2.html"));
-})
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        auth: {
+            user: 'kelley.dietrich@ethereal.email',
+            pass: '1Z4vQJ9XD8UfXbvzUd'
+        },
+    });
 
-router.get("/ejs", (req, res)=>{
-    res.render("index", {name:"Abhii", array:[1, 2, 3, 4]});
-})
+    let info = await transporter.sendMail({
+        from: '"Fred Foo 👻" <hii@gmail.com>', // sender address
+        to: "megablazikenabhishek@gmail.com", // list of receivers
+        subject: "Hello ✔", // Subject line
+        text: "Hello world?", // plain text body
+        html: "<b>Hello world?</b>", // html body
+    });
 
-router.post("/upload", uploader({useTempFiles:true}),  async(req, res)=>{
-    console.log(req.files.images);
-    await cloudinary.uploader.upload(req.files.images.tempFilePath, (err, result)=>{
-        console.log(result);
-    }).catch(err=>console.log(err))
-    
-    res.send("done");
-    require("rimraf")("tmp");
+    console.log("Message sent: %s", info.messageId);
+    res.send("hiii");
 })
 
 module.exports = router;
