@@ -3,7 +3,6 @@ const Token = require("../models/token");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const crypto  = require("crypto");
-const axios = require("axios");
 
 router.post("/", async(req, res)=>{
     var transporter = nodemailer.createTransport({
