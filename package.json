@@ -29,6 +29,7 @@
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
     "formidable": "^2.1.1",
+    "html-pdf": "^3.0.1",
     "mongoose": "^6.1.2",
     "node-cron": "^3.0.2",
     "nodemailer": "^6.9.1",
