@@ -50,26 +50,25 @@ router.get("/:id/verify/:token", async(req, res)=>{
             res.status(400).send("Invalid");
             return;
         }
-        
+        console.log(obj);
         var request = require('request');
-
-    request.post(
-        `${process.env.HOST}/signup`,
-        { json: { name: obj.name,
-                username: obj.username,
-                email: obj.email,
-                password: obj.password } },
-        function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                // console.log(body);
-                Token.findByIdAndDelete(obj._id)
-                    .catch(err=>console.log(err))
-                res.send("verified");
+        request.post(
+            `${process.env.HOST}/signup`,
+            { json: { name: obj.name,
+                    username: obj.username,
+                    email: obj.email,
+                    password: obj.password } },
+            function (error, response, body) {
+                // console.log(response.statusCode);
+                if (!error && response.statusCode == 302) {
+                    Token.findByIdAndDelete(obj._id)
+                        .catch(err=>console.log(err))
+                    res.send("verified");
+                }
+                else
+                    res.send("Internal Server Error......");
             }
-            else
-                res.send("Internal Server Error......");
-        }
-    );
+        );
     } catch (error) {
         console.log(error);
     }
