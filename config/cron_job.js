@@ -28,7 +28,7 @@ cron.schedule("*/30 * * * *", async () => {
     }
 })
 
-cron.schedule('00 59 * * * *', async () => {
+cron.schedule('*/35 * * * *', async () => {
     // code to run at 1 am every day
     // const check = async()=>{
     console.log("Running Cron Job for Winners.................");
