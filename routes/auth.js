@@ -51,7 +51,7 @@ router.get("/:id/verify/:token", async(req, res)=>{
             res.status(400).send("Invalid");
             return;
         }
-        console.log(obj);
+        // console.log(obj);
         var request = require('request');
         request.post(
             `${process.env.HOST}/signup`,

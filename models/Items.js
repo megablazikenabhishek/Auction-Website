@@ -13,6 +13,7 @@ const ItemSchema = new Schema({
     base_price: Number,
     sold: {type: Boolean, default: false},
     expired:{type: Boolean, default: false},
+    sent: {type: Boolean, default: false},
     location: String, 
     
     // bid section
