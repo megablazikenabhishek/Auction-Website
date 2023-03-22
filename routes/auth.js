@@ -33,7 +33,7 @@ router.post("/", async(req, res)=>{
                 res.status(505).send("Internal Server Error!!")
                 console.log(error);
             } else {
-                res.send('Email Sent!')
+                res.render("verify", {msg: "Email has been sennt!!!"})
             }
         });
     } catch (error) {

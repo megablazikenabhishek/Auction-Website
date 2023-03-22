@@ -3,6 +3,9 @@ const Item = require("../models/Items");
 const getHtml = require("../lib/generatePDF");
 const User = require("../models/user");
 const nodemailer = require("nodemailer");
+var pdf = require('html-pdf');
+var options = { format: 'Letter' };
+const format = require("date-format")
 // declaring the winner is remaining yet
 
 cron.schedule("*/30 * * * *", async () => {
@@ -27,10 +30,8 @@ cron.schedule("*/30 * * * *", async () => {
         console.log(err);
     }
 })
-
 cron.schedule('*/35 * * * *', async () => {
-    // code to run at 1 am every day
-    // const check = async()=>{
+// const check = async()=>{
     console.log("Running Cron Job for Winners.................");
     try {
         let result = await Item.find({ sold: false, expired: true })
@@ -40,11 +41,11 @@ cron.schedule('*/35 * * * *', async () => {
         for (let it = 0; it < result.length; it++) {
             const i = result[it];
             if (i.current_bid.name !== "-none-") {
-                await Item.findOneAndUpdate(i._id, { sold: true, winner: { name: i.current_bid.name, _id: i.current_bid.user_id, amount: i.current_bid.amount } })
-                    .catch(err => console.log(err))
+                // await Item.findOneAndUpdate(i._id, { sold: true, winner: { name: i.current_bid.name, _id: i.current_bid.user_id, amount: i.current_bid.amount } })
+                //     .catch(err => console.log(err))
 
                 const user = await User.findById(i.current_bid.user_id);
-                sendMail.push({ name: i.current_bid.name, product_name: i.product_name, price: i.current_bid.amount, time_stamp: i.time_stamp, email: user.email })
+                sendMail.push({ name: i.current_bid.name, product_name: i.product_name, price: i.current_bid.amount, time_stamp: format.asString("dd/MM/yyyy", new Date(i.time_stamp)), email: user.email })
             }
         }
 
@@ -56,7 +57,8 @@ cron.schedule('*/35 * * * *', async () => {
                 pass: process.env.PASS
             }
         });
-        sendMail.forEach(async i => {
+        await sendMail.forEach(async i => {
+            // creating pdf
             let mailOptions = {
                 from: process.env.EMAIL,
                 to: i.email,
@@ -66,7 +68,7 @@ cron.schedule('*/35 * * * *', async () => {
 
             await transporter.sendMail(mailOptions, function (error, info) {
                 if (error) {
-                    console.log(error);
+                    return console.log(error);
                 }
             });
         });
