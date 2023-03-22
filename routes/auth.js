@@ -33,10 +33,11 @@ router.post("/", async(req, res)=>{
                 res.status(505).send("Internal Server Error!!")
                 console.log(error);
             } else {
-                res.send('Email Sent!')
+                res.render("verify", {msg: "Email has been sennt!!!", body: "Click on the link sent at your email to verify"})
             }
         });
     } catch (error) {
+        res.send("Internal Server Error......");
         console.log(error);
     }
 })
@@ -63,13 +64,14 @@ router.get("/:id/verify/:token", async(req, res)=>{
                 if (!error && response.statusCode == 302) {
                     Token.findByIdAndDelete(obj._id)
                         .catch(err=>console.log(err))
-                    res.send("verified");
+                    res.render("verify", {msg: "Congratulations!!!", body: "You have been Verified. Well done!!"})
                 }
                 else
                     res.send("Internal Server Error......");
             }
         );
     } catch (error) {
+        res.send("Internal Server Error......");
         console.log(error);
     }
 })

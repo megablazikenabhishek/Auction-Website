@@ -3,6 +3,12 @@ const router = express.Router();
 const Item = require("../models/Items");
 const format = require("date-format");
 
+const getTimeStamp = (s) => {
+  var date = new Date();
+  date.setDate(date.getDate() + Number(s));
+  return date;
+};
+
 router.use(require("../middlewares/authorizationMiddleware"));
 router.get("/", async (req, res) => {
   try {
@@ -24,7 +30,7 @@ router.get("/", async (req, res) => {
       if (list[i].sold) {
         total_sellings++;
         profit += list[i].current_bid.amount - list[i].base_price;
-        console.log(list[i].base_price);
+        // console.log(list[i].base_price);
       } else total_unsold++;
     }
     // console.log(list);
@@ -38,5 +44,16 @@ router.get("/", async (req, res) => {
     console.log(error);
   }
 });
-
+router.put("/resell/:id", async(req, res)=>{
+  const {id} = req.params;
+  const tt = req.body.time_stamp;
+  try {
+    await Item.findByIdAndUpdate(id, {sold: false, expired: false, time_stamp: getTimeStamp(tt)})
+    // console.log("done");
+    res.json({msg: "done"})
+  } catch (error) {
+    res.json({msg: "Internal Server Error"});
+    console.log(error);
+  }
+})
 module.exports = router;
