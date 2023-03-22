@@ -85,7 +85,7 @@ router.get("/getItems", async(req, res)=>{
         result.map(async i=>{
             const date = new Date();
             if(i.time_stamp<=date && i.current_bid.name !== "-none-"){
-                await Item.findOneAndUpdate(i._id, {expired:true, sold: true})
+                await Item.findOneAndUpdate(i._id, {expired:true})
                 .catch(err=>console.log(err))
             }
             else if(i.time_stamp<=date){
