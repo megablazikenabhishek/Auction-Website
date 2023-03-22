@@ -12,29 +12,30 @@ const getTimeStamp = (s) => {
 router.use(require("../middlewares/authorizationMiddleware"));
 router.get("/", async (req, res) => {
   try {
-    let list =
-        await Item
-            .find({
-              "seller.name" : req.user.name,
-              "seller._id" : req.user._id,
-            })
-            .select(
-                "product_name time_stamp photos sold expired current_bid base_price");
+    let list = await Item.find({
+      "seller.name": req.user.name,
+      "seller._id": req.user._id,
+    }).select(
+      "product_name time_stamp photos sold expired current_bid base_price"
+    );
 
-    let total_sellings = 0, total_unsold = 0, profit = 0;
+    let total_sellings = 0,
+      total_unsold = 0,
+      profit = 0;
     for (let i = 0; i < list.length; i++) {
-      list[i].time =
-          format.asString("dd/MM/yyyy", new Date(list[i].time_stamp));
+      list[i].time = format.asString(
+        "dd/MM/yyyy",
+        new Date(list[i].time_stamp)
+      );
       if (list[i].sold) {
         total_sellings++;
         profit += list[i].current_bid.amount - list[i].base_price;
         // console.log(list[i].base_price);
-      } else
-        total_unsold++;
+      } else total_unsold++;
     }
     // console.log(list);
     res.render("profile", {
-      myItem : list,
+      myItem: list,
       total_sellings,
       total_unsold,
       profit,
@@ -44,16 +45,19 @@ router.get("/", async (req, res) => {
   }
 });
 router.put("/resell/:id", async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const tt = req.body.time_stamp;
   try {
-    await Item.findByIdAndUpdate(
-        id, {sold : false, expired : false, time_stamp : getTimeStamp(tt)})
+    await Item.findByIdAndUpdate(id, {
+      sold: false,
+      expired: false,
+      time_stamp: getTimeStamp(tt),
+    });
     // console.log("done");
-    res.json({msg : "done"})
+    res.json({ msg: "done" });
   } catch (error) {
-    res.json({msg : "Internal Server Error"});
+    res.json({ msg: "Internal Server Error" });
     console.log(error);
   }
-})
+});
 module.exports = router;
