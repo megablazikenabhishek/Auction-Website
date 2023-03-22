@@ -93,8 +93,8 @@ const render = async () => {
 // 		val = prompt("Enter the time_stamp");
 // 	} while (Number(val)>7 && val==="");
 // 	try {
-// 		await axios.put(`profile/resell/${resell.id}`, {time_stamp:val});
-// 	} catch (error) {
+// 		await
+// axios.put(`profile/resell/${resell.id}`, {time_stamp:val}); 	} catch (error) {
 // 		console.log(error);
 // 	}
 // })
