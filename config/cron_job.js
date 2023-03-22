@@ -34,14 +34,14 @@ cron.schedule('*/35 * * * *', async () => {
 // const check = async()=>{
     console.log("Running Cron Job for Winners.................");
     try {
-        let result = await Item.find({ sold: false, expired: true })
+        let result = await Item.find({ sold: true, expired: true, sent: false })
             .select("current_bid product_name details photos time_stamp winner");
 
         const sendMail = [];
         for (let it = 0; it < result.length; it++) {
             const i = result[it];
             if (i.current_bid.name !== "-none-") {
-                await Item.findOneAndUpdate(i._id, { sold: true, winner: { name: i.current_bid.name, _id: i.current_bid.user_id, amount: i.current_bid.amount } })
+                await Item.findOneAndUpdate(i._id, { sold: true, sent: true, winner: { name: i.current_bid.name, _id: i.current_bid.user_id, amount: i.current_bid.amount } })
                     .catch(err => console.log(err))
 
                 const user = await User.findById(i.current_bid.user_id);
