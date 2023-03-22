@@ -85,7 +85,19 @@ const render = async () => {
     console.log(error);
   }
 };
-
+// const resell = document.querySelector(".but");
+// resell.addEventListener("click", async(e)=>{
+// 	console.log(resell.id);
+// 	let val;
+// 	do {
+// 		val = prompt("Enter the time_stamp");
+// 	} while (Number(val)>7 && val==="");
+// 	try {
+// 		await axios.put(`profile/resell/${resell.id}`, {time_stamp:val});
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// })
 // window.addEventListener("load", () => {
 //   render();
 // });

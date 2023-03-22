@@ -41,8 +41,8 @@ cron.schedule('*/35 * * * *', async () => {
         for (let it = 0; it < result.length; it++) {
             const i = result[it];
             if (i.current_bid.name !== "-none-") {
-                // await Item.findOneAndUpdate(i._id, { sold: true, winner: { name: i.current_bid.name, _id: i.current_bid.user_id, amount: i.current_bid.amount } })
-                //     .catch(err => console.log(err))
+                await Item.findOneAndUpdate(i._id, { sold: true, winner: { name: i.current_bid.name, _id: i.current_bid.user_id, amount: i.current_bid.amount } })
+                    .catch(err => console.log(err))
 
                 const user = await User.findById(i.current_bid.user_id);
                 sendMail.push({ name: i.current_bid.name, product_name: i.product_name, price: i.current_bid.amount, time_stamp: format.asString("dd/MM/yyyy", new Date(i.time_stamp)), email: user.email })

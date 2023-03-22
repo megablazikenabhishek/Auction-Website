@@ -133,7 +133,29 @@
                   </td>
                   <% if(!i.sold && i.expired) {%>
                   <td>
-                    <button class="but" role="button">Resell</button>
+                    <button class="but" id="<%= i._id %>">Resell</button>
+                    <script>
+                      document
+                        .getElementById("<%= i._id %>")
+                        .addEventListener("click", async (e) => {
+                          console.log(e.currentTarget.id);
+                          let val;
+                          do {
+                            val = prompt("Enter the time_stamp");
+                          } while (Number(val) > 7 && val === "");
+                          console.log(val);
+                          try {
+                            await axios.put(
+                              `profile/resell/${e.currentTarget.id}`,
+                              {
+                                time_stamp: val,
+                              }
+                            );
+                          } catch (error) {
+                            console.log(error);
+                          }
+                        });
+                    </script>
                   </td>
                   <% } %>
                 </tr>
