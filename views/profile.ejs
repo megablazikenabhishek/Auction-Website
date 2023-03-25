@@ -18,10 +18,11 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <%- include("components/navbar_style") %>
     <title>AdminHub</title>
   </head>
   <body>
-    <nav>
+    <!-- <nav>
       <div class="menu-icon">
         <span class="fas fa-bars"></span>
       </div>
@@ -48,7 +49,8 @@
         />
         <button type="submit" class="fas fa-search"></button>
       </form>
-    </nav>
+    </nav> -->
+    <%- include("components/navbar") %>
 
     <!-- CONTENT -->
     <section id="content">
@@ -90,7 +92,7 @@
           <li>
             <i class="bx bxs-dollar-circle"></i>
             <span class="text">
-              <h3>$<%= profit %></h3>
+              <h3>₹<%= profit %></h3>
               <p>Total Profit</p>
             </span>
           </li>
