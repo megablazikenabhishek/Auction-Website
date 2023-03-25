@@ -31,7 +31,7 @@ cron.schedule("*/30 * * * *", async () => {
     }
 })
 cron.schedule('*/35 * * * *', async () => {
-// const check = async()=>{
+    // const check = async()=>{
     console.log("Running Cron Job for Winners.................");
     try {
         let result = await Item.find({ sold: true, expired: true, sent: false })

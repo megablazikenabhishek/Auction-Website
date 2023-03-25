@@ -23,7 +23,7 @@ const render = async () => {
               <p>Current Bid</p>
               <strong>₹${element.current_bid.amount}</strong>
             </div>
-            <div class="colors">
+            <div class="colors" style="display:none;">
               <div class="selected">
                 <i class="bx bx-check"></i>
               </div>
@@ -37,7 +37,7 @@ const render = async () => {
           </div>
 
           <div class="card-footer">
-            <button>Buy now</button>
+            <button>Participate</button>
           </div>
         </div>`;
     });
