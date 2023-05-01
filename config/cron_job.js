@@ -8,7 +8,7 @@ var options = { format: "Letter" };
 const format = require("date-format");
 // declaring the winner is remaining yet
 
-cron.schedule("*/30 * * * *", async () => {
+cron.schedule("*/3 * * * *", async () => {
   console.log("Running Cron Job for update........");
   try {
     let result = await Item.find({ sold: false, expired: false }).select(
@@ -31,7 +31,7 @@ cron.schedule("*/30 * * * *", async () => {
     console.log(err);
   }
 });
-cron.schedule("*/35 * * * *", async () => {
+cron.schedule("*/4 * * * *", async () => {
   // const check = async()=>{
   console.log("Running Cron Job for Winners.................");
   try {
